@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BPExecutionContext.h"
 #import "BPSimulator.h"
+
 
 // This is a small subset of XCTestManager_IDEInterface protocol
 @protocol BPTestBundleConnectionDelegate <NSObject>
@@ -16,9 +18,10 @@
 
 @interface BPTestBundleConnection : NSObject
 @property (nonatomic, strong) BPConfiguration *config;
+@property (nonatomic, strong) BPExecutionContext *context;
 @property (nonatomic, strong) BPSimulator *simulator;
 @property (nonatomic, copy) void (^completionBlock)(NSError *, pid_t);
-- (instancetype)initWithDevice:(BPSimulator *)device andInterface:(id<BPTestBundleConnectionDelegate>)interface;
+- (instancetype)initWithContext:(BPExecutionContext *)context andInterface:(id<BPTestBundleConnectionDelegate>)interface;
 - (void)connectWithTimeout:(NSTimeInterval)timeout;
 - (void)startTestPlan;
 @end
