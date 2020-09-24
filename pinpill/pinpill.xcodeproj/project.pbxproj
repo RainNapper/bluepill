@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A51211DE24994EB700400428 /* ReportCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51211DD24994EB700400428 /* ReportCollector.swift */; };
+		A51211E0249972BF00400428 /* ReportTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51211DF249972BF00400428 /* ReportTree.swift */; };
+		A54CE4A72481E479006DE3BE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54CE4A62481E479006DE3BE /* main.swift */; };
+		A54CE4AF2481E6FE006DE3BE /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = A54CE4AE2481E6FE006DE3BE /* ArgumentParser */; };
+		A54CE4B12481E7DB006DE3BE /* TestRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54CE4B02481E7DB006DE3BE /* TestRun.swift */; };
+		A54CE4B32481E86F006DE3BE /* Pinpill.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54CE4B22481E86F006DE3BE /* Pinpill.swift */; };
+		A58AA1C824E3DEC200835ADF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58AA1C724E3DEC200835ADF /* Logger.swift */; };
+		A58AA1CC24E3E8BA00835ADF /* ConcurrencyMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58AA1CB24E3E8BA00835ADF /* ConcurrencyMetric.swift */; };
+		A58AA1CE24E3EAAD00835ADF /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58AA1CD24E3EAAD00835ADF /* Metrics.swift */; };
+		A5931A6E24B6551E003E3160 /* PinpillCLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5931A6D24B6551E003E3160 /* PinpillCLI.swift */; };
+		A5931A7024B7BBB2003E3160 /* TestTaskConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5931A6F24B7BBB2003E3160 /* TestTaskConfig.swift */; };
+		A5931A7224B7EBD5003E3160 /* CLIPinpillArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5931A7124B7EBD5003E3160 /* CLIPinpillArguments.swift */; };
+		A5931A7424B7EBEE003E3160 /* JSONPinpillArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5931A7324B7EBEE003E3160 /* JSONPinpillArguments.swift */; };
+		A5931A7624B7EBFC003E3160 /* PinpillArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5931A7524B7EBFC003E3160 /* PinpillArguments.swift */; };
+		A5A1EAD82485FC0B00B54C15 /* TestTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A1EAD72485FC0B00B54C15 /* TestTask.swift */; };
+		A5A1EADA2485FD9000B54C15 /* TestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A1EAD92485FD9000B54C15 /* TestMethod.swift */; };
+		A5A1EADC24871D5900B54C15 /* Orchestrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A1EADB24871D5900B54C15 /* Orchestrator.swift */; };
+		A5C5531324BD170300DFE67A /* RunLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5531224BD170300DFE67A /* RunLedger.swift */; };
+		A5E479A42494189D00F729D4 /* BPConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E479A32494189D00F729D4 /* BPConstants.swift */; };
+		A5E479A62498212600F729D4 /* PinpillConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E479A52498212600F729D4 /* PinpillConfiguration.swift */; };
+		A5FC0DE92481F5F700F6FD36 /* XCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC0DE82481F5F700F6FD36 /* XCTest.swift */; };
+		A5FC0DEB24834F3B00F6FD36 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC0DEA24834F3B00F6FD36 /* Shell.swift */; };
+		A5FC0DED2484621D00F6FD36 /* PinpillURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC0DEC2484621D00F6FD36 /* PinpillURLs.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A54CE4A12481E478006DE3BE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A51211DD24994EB700400428 /* ReportCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCollector.swift; sourceTree = "<group>"; };
+		A51211DF249972BF00400428 /* ReportTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTree.swift; sourceTree = "<group>"; };
+		A54CE4A32481E478006DE3BE /* pinpill */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pinpill; sourceTree = BUILT_PRODUCTS_DIR; };
+		A54CE4A62481E479006DE3BE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A54CE4B02481E7DB006DE3BE /* TestRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRun.swift; sourceTree = "<group>"; };
+		A54CE4B22481E86F006DE3BE /* Pinpill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pinpill.swift; sourceTree = "<group>"; };
+		A58AA1C724E3DEC200835ADF /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		A58AA1CB24E3E8BA00835ADF /* ConcurrencyMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencyMetric.swift; sourceTree = "<group>"; };
+		A58AA1CD24E3EAAD00835ADF /* Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metrics.swift; sourceTree = "<group>"; };
+		A5931A6D24B6551E003E3160 /* PinpillCLI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinpillCLI.swift; sourceTree = "<group>"; };
+		A5931A6F24B7BBB2003E3160 /* TestTaskConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTaskConfig.swift; sourceTree = "<group>"; };
+		A5931A7124B7EBD5003E3160 /* CLIPinpillArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLIPinpillArguments.swift; sourceTree = "<group>"; };
+		A5931A7324B7EBEE003E3160 /* JSONPinpillArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPinpillArguments.swift; sourceTree = "<group>"; };
+		A5931A7524B7EBFC003E3160 /* PinpillArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinpillArguments.swift; sourceTree = "<group>"; };
+		A5A1EAD72485FC0B00B54C15 /* TestTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTask.swift; sourceTree = "<group>"; };
+		A5A1EAD92485FD9000B54C15 /* TestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMethod.swift; sourceTree = "<group>"; };
+		A5A1EADB24871D5900B54C15 /* Orchestrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orchestrator.swift; sourceTree = "<group>"; };
+		A5C5531224BD170300DFE67A /* RunLedger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunLedger.swift; sourceTree = "<group>"; };
+		A5E479A32494189D00F729D4 /* BPConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPConstants.swift; sourceTree = "<group>"; };
+		A5E479A52498212600F729D4 /* PinpillConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinpillConfiguration.swift; sourceTree = "<group>"; };
+		A5FC0DE82481F5F700F6FD36 /* XCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTest.swift; sourceTree = "<group>"; };
+		A5FC0DEA24834F3B00F6FD36 /* Shell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
+		A5FC0DEC2484621D00F6FD36 /* PinpillURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinpillURLs.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A54CE4A02481E478006DE3BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A54CE4AF2481E6FE006DE3BE /* ArgumentParser in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A54CE49A2481E478006DE3BE = {
+			isa = PBXGroup;
+			children = (
+				A54CE4A52481E478006DE3BE /* pinpill */,
+				A54CE4A42481E478006DE3BE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A54CE4A42481E478006DE3BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A54CE4A32481E478006DE3BE /* pinpill */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A54CE4A52481E478006DE3BE /* pinpill */ = {
+			isa = PBXGroup;
+			children = (
+				A58AA1C624E3DEAA00835ADF /* Logging */,
+				A5A5267624B9132300F08261 /* Configuration */,
+				A5A5267524B9130700F08261 /* Orchestrator */,
+				A5A5267424B912E100F08261 /* Reporting */,
+				A5A5267324B9125A00F08261 /* Models */,
+				A5A5267224B911B600F08261 /* Arguments */,
+				A54CE4A62481E479006DE3BE /* main.swift */,
+				A5931A6D24B6551E003E3160 /* PinpillCLI.swift */,
+				A54CE4B22481E86F006DE3BE /* Pinpill.swift */,
+				A5FC0DE82481F5F700F6FD36 /* XCTest.swift */,
+				A5FC0DEA24834F3B00F6FD36 /* Shell.swift */,
+			);
+			path = pinpill;
+			sourceTree = "<group>";
+		};
+		A58AA1C624E3DEAA00835ADF /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				A58AA1C724E3DEC200835ADF /* Logger.swift */,
+				A58AA1CB24E3E8BA00835ADF /* ConcurrencyMetric.swift */,
+				A58AA1CD24E3EAAD00835ADF /* Metrics.swift */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
+		A5A5267224B911B600F08261 /* Arguments */ = {
+			isa = PBXGroup;
+			children = (
+				A5931A7524B7EBFC003E3160 /* PinpillArguments.swift */,
+				A5931A7124B7EBD5003E3160 /* CLIPinpillArguments.swift */,
+				A5931A7324B7EBEE003E3160 /* JSONPinpillArguments.swift */,
+			);
+			path = Arguments;
+			sourceTree = "<group>";
+		};
+		A5A5267324B9125A00F08261 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A5931A6F24B7BBB2003E3160 /* TestTaskConfig.swift */,
+				A5A1EAD92485FD9000B54C15 /* TestMethod.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A5A5267424B912E100F08261 /* Reporting */ = {
+			isa = PBXGroup;
+			children = (
+				A51211DD24994EB700400428 /* ReportCollector.swift */,
+				A51211DF249972BF00400428 /* ReportTree.swift */,
+			);
+			path = Reporting;
+			sourceTree = "<group>";
+		};
+		A5A5267524B9130700F08261 /* Orchestrator */ = {
+			isa = PBXGroup;
+			children = (
+				A5E479A32494189D00F729D4 /* BPConstants.swift */,
+				A5A1EADB24871D5900B54C15 /* Orchestrator.swift */,
+				A54CE4B02481E7DB006DE3BE /* TestRun.swift */,
+				A5A1EAD72485FC0B00B54C15 /* TestTask.swift */,
+				A5C5531224BD170300DFE67A /* RunLedger.swift */,
+			);
+			path = Orchestrator;
+			sourceTree = "<group>";
+		};
+		A5A5267624B9132300F08261 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				A5E479A52498212600F729D4 /* PinpillConfiguration.swift */,
+				A5FC0DEC2484621D00F6FD36 /* PinpillURLs.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A54CE4A22481E478006DE3BE /* pinpill */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A54CE4AA2481E479006DE3BE /* Build configuration list for PBXNativeTarget "pinpill" */;
+			buildPhases = (
+				A54CE49F2481E478006DE3BE /* Sources */,
+				A54CE4A02481E478006DE3BE /* Frameworks */,
+				A54CE4A12481E478006DE3BE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = pinpill;
+			packageProductDependencies = (
+				A54CE4AE2481E6FE006DE3BE /* ArgumentParser */,
+			);
+			productName = pinpill;
+			productReference = A54CE4A32481E478006DE3BE /* pinpill */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A54CE49B2481E478006DE3BE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = Pinterest;
+				TargetAttributes = {
+					A54CE4A22481E478006DE3BE = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = A54CE49E2481E478006DE3BE /* Build configuration list for PBXProject "pinpill" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A54CE49A2481E478006DE3BE;
+			packageReferences = (
+				A54CE4AD2481E6FE006DE3BE /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+			);
+			productRefGroup = A54CE4A42481E478006DE3BE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A54CE4A22481E478006DE3BE /* pinpill */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A54CE49F2481E478006DE3BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A54CE4B32481E86F006DE3BE /* Pinpill.swift in Sources */,
+				A5FC0DED2484621D00F6FD36 /* PinpillURLs.swift in Sources */,
+				A5931A7624B7EBFC003E3160 /* PinpillArguments.swift in Sources */,
+				A54CE4B12481E7DB006DE3BE /* TestRun.swift in Sources */,
+				A5E479A42494189D00F729D4 /* BPConstants.swift in Sources */,
+				A5931A7024B7BBB2003E3160 /* TestTaskConfig.swift in Sources */,
+				A5FC0DEB24834F3B00F6FD36 /* Shell.swift in Sources */,
+				A5A1EADA2485FD9000B54C15 /* TestMethod.swift in Sources */,
+				A5FC0DE92481F5F700F6FD36 /* XCTest.swift in Sources */,
+				A5C5531324BD170300DFE67A /* RunLedger.swift in Sources */,
+				A5931A7224B7EBD5003E3160 /* CLIPinpillArguments.swift in Sources */,
+				A51211E0249972BF00400428 /* ReportTree.swift in Sources */,
+				A58AA1CC24E3E8BA00835ADF /* ConcurrencyMetric.swift in Sources */,
+				A58AA1CE24E3EAAD00835ADF /* Metrics.swift in Sources */,
+				A5931A7424B7EBEE003E3160 /* JSONPinpillArguments.swift in Sources */,
+				A51211DE24994EB700400428 /* ReportCollector.swift in Sources */,
+				A5931A6E24B6551E003E3160 /* PinpillCLI.swift in Sources */,
+				A58AA1C824E3DEC200835ADF /* Logger.swift in Sources */,
+				A54CE4A72481E479006DE3BE /* main.swift in Sources */,
+				A5A1EADC24871D5900B54C15 /* Orchestrator.swift in Sources */,
+				A5E479A62498212600F729D4 /* PinpillConfiguration.swift in Sources */,
+				A5A1EAD82485FC0B00B54C15 /* TestTask.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A54CE4A82481E479006DE3BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A54CE4A92481E479006DE3BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		A54CE4AB2481E479006DE3BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A54CE4AC2481E479006DE3BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A54CE49E2481E478006DE3BE /* Build configuration list for PBXProject "pinpill" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A54CE4A82481E479006DE3BE /* Debug */,
+				A54CE4A92481E479006DE3BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A54CE4AA2481E479006DE3BE /* Build configuration list for PBXNativeTarget "pinpill" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A54CE4AB2481E479006DE3BE /* Debug */,
+				A54CE4AC2481E479006DE3BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A54CE4AD2481E6FE006DE3BE /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A54CE4AE2481E6FE006DE3BE /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A54CE4AD2481E6FE006DE3BE /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = A54CE49B2481E478006DE3BE /* Project object */;
+}
