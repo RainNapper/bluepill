@@ -38,7 +38,7 @@ class RunLedger {
     func addRuns(runs: [TestRun]) {
         runLedgerUpdateDispatchQueue.sync {
             if frozen {
-                print("[Warning] Frozen ledger, ignoring addRuns")
+                Logger.warning(msg: "[RunLedger] Frozen ledger, ignoring addRuns")
                 return
             }
             unstartedRuns.append(contentsOf: runs)
@@ -51,12 +51,12 @@ class RunLedger {
     func flush() -> [TestRun] {
         runLedgerUpdateDispatchQueue.sync {
             if frozen {
-                print("[Warning] Frozen ledger, ignoring flush")
+                Logger.warning(msg: "[RunLedger] Frozen ledger, ignoring flush")
                 return []
             }
 
             if activeRuns.count > maxConcurrentRuns {
-                print("[Error] Number of active runs exceeded max concurrent tasks")
+                Logger.error(msg: "[RunLedger] Number of active runs exceeded max concurrent tasks")
             }
 
             var newActiveRuns: [TestRun] = []
@@ -75,13 +75,14 @@ class RunLedger {
      */
     func completeRun(run: TestRun) {
         runLedgerUpdateDispatchQueue.sync {
+            Logger.verbose(msg: "[RunLedger] completeRun \(run.runID)")
             if frozen {
-                print("[Warning] Frozen ledger, ignoring completeRun")
+                Logger.warning(msg: "[RunLedger] Frozen ledger, ignoring completeRun")
                 return
             }
 
             guard let completedRun = self.activeRuns.removeValue(forKey: run.key) else {
-                print("[Error] Couldn't find active run for a task that just completed")
+                Logger.error(msg: "[RunLedger] Couldn't find active run for a task that just completed")
                 return
             }
             self.completedRuns.append(completedRun)
@@ -93,7 +94,7 @@ class RunLedger {
      */
     func freeze() {
         runLedgerUpdateDispatchQueue.sync {
-            print("Freezing run ledger")
+            Logger.warning(msg: "[RunLedger] Freezing ledger")
             self.frozen = true
         }
     }
@@ -107,7 +108,7 @@ class RunLedger {
     func getActiveRuns() -> [TestRun] {
         runLedgerUpdateDispatchQueue.sync {
             if !frozen {
-                print("[Warning] Accessing active runs on an unfrozen ledger.")
+                Logger.warning(msg: "[RunLedger] Accessing active runs on an unfrozen ledger.")
             }
 
             return Array(activeRuns.values)

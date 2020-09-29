@@ -43,34 +43,26 @@ class Logger {
     }()
     
     static func verbose(msg: String) {
-        if (severity > .verbose) {
-            return
-        }
-        log(severity: .verbose, msg: msg)
+        log(withSeverity: .verbose, msg: msg)
     }
     
     static func info(msg: String) {
-        if (severity > .info) {
-            return
-        }
-        log(severity: .info, msg: msg)
+        log(withSeverity: .info, msg: msg)
     }
     
     static func warning(msg: String) {
-        if (severity > .warning) {
-            return
-        }
-        log(severity: .warning, msg: msg)
+        log(withSeverity: .warning, msg: msg)
     }
     
     static func error(msg: String) {
-        if (severity > .error) {
-            return
-        }
-        log(severity: .error, msg: msg)
+        log(withSeverity: .error, msg: msg)
     }
     
-    static func log(severity: Severity, msg: String) {
-        print("\(dateFormatter.string(from: Date.init())) - \(severity.rawValue)/[\(TAG)] \(msg)")
+    static func log(withSeverity: Severity, msg: String) {
+        if (withSeverity < severity) {
+            return
+        }
+        
+        print("\(dateFormatter.string(from: Date.init())) - \(withSeverity.rawValue)/[\(TAG)] \(msg)")
     }
 }
