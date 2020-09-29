@@ -49,7 +49,7 @@ class TestTask {
         runs = []
 
         let combinedEnvironment = config.environment.merging(xcTest.environment) { (v1: String, v2: String) in
-            print("Found value conflict in environment: \(v1) and \(v2). Using the one in configuration: \(v1)")
+            Logger.warning(msg: "Found value conflict in environment: \(v1) and \(v2). Using the one in configuration: \(v1)")
             return v2
         }
 
@@ -92,6 +92,7 @@ class TestTask {
     }
 
     func onRunComplete(testRun: TestRun) -> [TestRun] {
+        Logger.verbose(msg: "TestTask \(testRun.description) - onRunComplete")
         if testRun.runID == 0 {
             return handleInitialRunComplete(testRun: testRun)
         }
@@ -140,10 +141,10 @@ class TestTask {
     func convertRunOutcomeToTaskOutcome(outcome: TestRun.Outcome) -> Outcome {
         switch outcome {
         case .none:
-            print("[Error] TestRun outcome was not populated!")
+            Logger.error(msg: "TestRun outcome was not populated!")
             return .toolFailure
         case .passed:
-            print("[Error] TestRun outcome was passed, but we already assumed no retries passed!")
+            Logger.error(msg: "TestRun outcome was passed, but we already assumed no retries passed!")
             return .toolFailure
         case .failed:
             return .failed

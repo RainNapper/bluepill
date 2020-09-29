@@ -86,6 +86,8 @@ public class Orchestrator {
         if !retries.isEmpty {
             Logger.info(msg: "Scheduling retries: \(retries.map { $0.description }.joined(separator: ", "))")
             queueRuns(runs: retries)
+        } else {
+            Logger.info(msg: "TestTask \(run.task.label) complete.")
         }
         flushQueue()
     }
