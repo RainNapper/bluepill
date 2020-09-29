@@ -19,7 +19,7 @@ extension Encodable {
 
 struct PinpillCLI: ParsableCommand {
     @Flag(help: "Whether to run without GUI")
-    var headless: Bool
+    var headless: Bool = false
 
     @Flag(help: "Disable saving videos of test runs.")
     var noRecordVideo: Bool
