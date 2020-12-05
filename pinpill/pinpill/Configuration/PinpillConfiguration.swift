@@ -11,6 +11,7 @@ import Foundation
 class PinpillConfiguration: Codable {
     enum PinpillConfigurationError: Error {
         case missingRequiredConfig(String)
+        case invalidConfig(String)
     }
 
     static let kDefaultHeadless = true
@@ -94,7 +95,7 @@ class PinpillConfiguration: Codable {
         Logger.verbose(msg: "Found xcode path: \(xcodeTask.stdOut)")
         let xcodeURL = URL(fileURLWithPath: xcodeTask.stdOut.trimmingCharacters(in: .whitespacesAndNewlines))
 
-        let urls = PinpillURLs(
+        let urls = try PinpillURLs(
             fileManager: FileManager.default,
             testBundleURL: testBundleURL,
             appBundleURL: appBundleURL,
@@ -104,7 +105,7 @@ class PinpillConfiguration: Codable {
             outputURL: outputURL,
             simulatorPreferencesURL: simulatorPreferencesURL
         )
-        return PinpillConfiguration(
+        return try PinpillConfiguration(
             headless: headless,
             maxSims: maxSims,
             maxRetries: maxRetries,
@@ -131,18 +132,30 @@ class PinpillConfiguration: Codable {
         urls: PinpillURLs,
         recordVideo: Bool,
         recordScreenshot: Bool
-    ) {
+    ) throws {
         self.headless = headless
-        precondition(maxSims > 0, "maxSims must be a positive integer. Got \(maxSims)")
+        if (maxSims <= 0) {
+            throw PinpillConfigurationError.invalidConfig("maxSims must be a positive integer. Got \(maxSims)")
+        }
         self.maxSims = maxSims
-        precondition(maxRetries >= 0, "numTestRuns must be a non-negative integer. Got \(maxRetries)")
+        
+        if (maxRetries < 0) {
+            throw PinpillConfigurationError.invalidConfig("numTestRuns must be a non-negative integer. Got \(maxRetries)")
+        }
         self.maxRetries = maxRetries
-        precondition(numTestRuns > 0, "numTestRuns must be a positive integer. Got \(numTestRuns)")
+        
+        if (numTestRuns <= 0) {
+            throw PinpillConfigurationError.invalidConfig("numTestRuns must be a positive integer. Got \(numTestRuns)")
+        }
         self.numTestRuns = numTestRuns
         self.device = device
         self.runtime = runtime
-        precondition(!testTasks.isEmpty, "Must contain at least one test task")
+        
+        if (testTasks.isEmpty) {
+            throw PinpillConfigurationError.invalidConfig("testTasks must be non-empty.")
+        }
         self.testTasks = testTasks
+        
         self.environment = environment
         self.urls = urls
         self.recordVideo = recordVideo
