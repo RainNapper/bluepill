@@ -9,6 +9,10 @@
 import Foundation
 
 class PinpillURLs: Codable {
+    enum PinpillURLError: Error {
+        case fileNotFoundError(String)
+    }
+    
     let testBundleURL: URL
     let appBundleURL: URL
     let xcTestRunURL: URL
@@ -17,33 +21,25 @@ class PinpillURLs: Codable {
     let bpURL: URL
     let outputURL: URL
     let simulatorPreferencesURL: URL
-
     let simulatorURL: URL
 
-    init(fileManager: FileManager, testBundleURL: URL, appBundleURL: URL, xcTestRunURL: URL, xcodeURL: URL, bpURL: URL, outputURL: URL, simulatorPreferencesURL: URL) {
-        precondition(fileManager.fileExists(atPath: testBundleURL.path), "Test bundle not found at path \(testBundleURL.path)")
+    init(fileManager: FileManager, testBundleURL: URL, appBundleURL: URL, xcTestRunURL: URL, xcodeURL: URL, bpURL: URL, outputURL: URL, simulatorPreferencesURL: URL) throws {
         self.testBundleURL = testBundleURL
-
-        precondition(fileManager.fileExists(atPath: appBundleURL.path), "App bundle not found at path \(appBundleURL.path)")
         self.appBundleURL = appBundleURL
-
-        precondition(fileManager.fileExists(atPath: xcTestRunURL.path), ".xctestrun not found at path \(xcTestRunURL.path)")
         self.xcTestRunURL = xcTestRunURL
-
-        precondition(fileManager.fileExists(atPath: xcodeURL.path), "xcode not found at path \(xcodeURL.path)")
         self.xcodeURL = xcodeURL
-
-        precondition(fileManager.fileExists(atPath: bpURL.path), "bp executable not found at path \(bpURL.path)")
         self.bpURL = bpURL
-
-        // Don't verify this exists because bp will create it for us if it's missing.
         self.outputURL = outputURL
-
-        precondition(fileManager.fileExists(atPath: simulatorPreferencesURL.path), "simulator preferences not found at path \(simulatorPreferencesURL.path)")
         self.simulatorPreferencesURL = simulatorPreferencesURL
-
         testRootURL = xcTestRunURL.deletingLastPathComponent()
         simulatorURL = xcodeURL.appendingPathComponent("/Applications/Simulator.app/Contents/MacOS/Simulator")
+        
+        try checkExists(fileManager: fileManager, path: testBundleURL, description: "test bundle")
+        try checkExists(fileManager: fileManager, path: appBundleURL, description: "app bundle")
+        try checkExists(fileManager: fileManager, path: xcTestRunURL, description: ".xctestrun")
+        try checkExists(fileManager: fileManager, path: testBundleURL, description: "xcode")
+        try checkExists(fileManager: fileManager, path: bpURL, description: "bp executable")
+        try checkExists(fileManager: fileManager, path: simulatorPreferencesURL, description: "simulator preferences")
     }
 
     func findXCTestURLs() -> [URL] {
@@ -57,5 +53,11 @@ class PinpillURLs: Codable {
         }
 
         return pluginURLs.filter { $0.pathExtension == "xctest" }
+    }
+    
+    func checkExists(fileManager: FileManager, path: URL, description: String) throws {
+        if(!fileManager.fileExists(atPath: path.path)) {
+            throw PinpillURLError.fileNotFoundError("\(description) not found at path \(path)")
+        }
     }
 }

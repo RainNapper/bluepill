@@ -22,10 +22,10 @@ struct PinpillCLI: ParsableCommand {
     var headless: Bool = false
 
     @Flag(help: "Disable saving videos of test runs.")
-    var noRecordVideo: Bool
+    var noRecordVideo: Bool = false
 
     @Flag(help: "Disable saving screenshots of failed UI tests.")
-    var noRecordScreenshot: Bool
+    var noRecordScreenshot: Bool = false
 
     @Option(help: "Maximum number of concurrent simulators")
     var maxSims: Int?
@@ -113,7 +113,10 @@ struct PinpillCLI: ParsableCommand {
 
     func readArgumentsFromFile(fileManager: FileManager, path: String) -> JSONPinpillArguments? {
         let configURL = URL(fileURLWithPath: path)
-        precondition(fileManager.fileExists(atPath: configURL.path), "config file not found at path \(configURL.path)")
+        if (!fileManager.fileExists(atPath: configURL.path)) {
+            Logger.error(msg: "Config file not found at path \(configURL.path)")
+            return nil
+        }
         let decoder = JSONDecoder()
         do {
             let jsonArgs = try decoder.decode(JSONPinpillArguments.self, from: Data(contentsOf: configURL))
@@ -121,7 +124,7 @@ struct PinpillCLI: ParsableCommand {
             Logger.verbose(msg: jsonArgs.toJSON())
             return jsonArgs
         } catch {
-            Logger.error(msg: "error: failed to decode arguments from file at \(path).")
+            Logger.error(msg: "Failed to decode arguments from file at \(path).")
             return nil
         }
     }
