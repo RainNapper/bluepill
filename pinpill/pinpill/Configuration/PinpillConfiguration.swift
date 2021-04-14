@@ -30,6 +30,8 @@ class PinpillConfiguration: Codable {
     let recordVideo: Bool
     static let kDefaultRecordScreenshot = true
     let recordScreenshot: Bool
+    static let kDefaultTaskTimeoutSeconds = 300
+    let taskTimeoutSeconds: Int
 
     static func fromRawConfig(baseConfig: PinpillArguments?, overrideConfig: PinpillArguments) throws -> PinpillConfiguration {
         let headless = baseConfig?.headless ?? overrideConfig.headless ?? kDefaultHeadless
@@ -37,7 +39,8 @@ class PinpillConfiguration: Codable {
         let recordScreenshot = baseConfig?.recordScreenshot ?? overrideConfig.recordScreenshot ?? kDefaultRecordScreenshot
         let maxRetries = overrideConfig.maxRetries ?? baseConfig?.maxRetries ?? kDefaultMaxRetries
         let numTestRuns = overrideConfig.numTestRuns ?? baseConfig?.numTestRuns ?? kDefaultNumTestRuns
-
+        let taskTimeoutSeconds = overrideConfig.taskTimeoutSeconds ?? baseConfig?.taskTimeoutSeconds ?? kDefaultTaskTimeoutSeconds
+        
         guard let maxSims = overrideConfig.maxSims ?? baseConfig?.maxSims else {
             throw PinpillConfigurationError.missingRequiredConfig("max sims")
         }
@@ -116,7 +119,8 @@ class PinpillConfiguration: Codable {
             environment: environment,
             urls: urls,
             recordVideo: recordVideo,
-            recordScreenshot: recordScreenshot
+            recordScreenshot: recordScreenshot,
+            taskTimeoutSeconds: taskTimeoutSeconds
         )
     }
 
@@ -131,7 +135,8 @@ class PinpillConfiguration: Codable {
         environment: [String: String],
         urls: PinpillURLs,
         recordVideo: Bool,
-        recordScreenshot: Bool
+        recordScreenshot: Bool,
+        taskTimeoutSeconds: Int
     ) throws {
         self.headless = headless
         if (maxSims <= 0) {
@@ -147,6 +152,12 @@ class PinpillConfiguration: Codable {
         if (numTestRuns <= 0) {
             throw PinpillConfigurationError.invalidConfig("numTestRuns must be a positive integer. Got \(numTestRuns)")
         }
+        
+        if (taskTimeoutSeconds <= 0) {
+            throw PinpillConfigurationError.invalidConfig("taskTimeoutSeconds must be positive")
+        }
+        self.taskTimeoutSeconds = taskTimeoutSeconds
+        
         self.numTestRuns = numTestRuns
         self.device = device
         self.runtime = runtime

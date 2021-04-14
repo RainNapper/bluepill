@@ -65,6 +65,9 @@ struct PinpillCLI: ParsableCommand {
 
     @Option(help: "Environment variables to set in the simulator, in the form KEY:value,KEY2:value2")
     var environment: String?
+    
+    @Option(help: "Timeout in seconds for bp tasks started by pinpill")
+    var taskTimeoutSeconds: Int?
 
     // -----------------------------------------------------------------------------
 

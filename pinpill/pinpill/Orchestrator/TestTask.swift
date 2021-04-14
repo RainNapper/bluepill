@@ -29,6 +29,7 @@ class TestTask {
     let label: String
     let xcTest: XCTest
     let config: PinpillConfiguration
+    let timeoutQueue: DispatchQueue
 
     let bpConfig: [String: Any?]
     let bpConfigJSON: Data
@@ -43,6 +44,7 @@ class TestTask {
         self.label = label
         self.xcTest = xcTest
         self.config = config
+        self.timeoutQueue = DispatchQueue(label: "timeout-queue-\(taskID)")
 
         status = .none
         outcome = .none

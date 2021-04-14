@@ -28,4 +28,5 @@ protocol PinpillArguments: Codable {
     var outputPath: String? { get }
     var simulatorPreferencesPath: String? { get }
     var environment: [String: String]? { get }
+    var taskTimeoutSeconds: Int? { get }
 }
