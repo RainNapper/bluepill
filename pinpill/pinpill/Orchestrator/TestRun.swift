@@ -39,6 +39,8 @@ class TestRun: CustomStringConvertible {
 
     // This will be used in filenames, so avoid any invalid characters.
     var key: String { return "\(task.taskID)_\(runID)" }
+    // Human readable run name used to identify the task in logs.
+    var runName: String { return "\(key) - \(task.label)"}
 
     init(runID: Int, task: TestTask) {
         self.runID = runID
@@ -57,7 +59,7 @@ class TestRun: CustomStringConvertible {
         let bpConfigURL = try writeBPConfigToTmpFile()
         self.bpConfigURL = bpConfigURL
         
-        let env = ["_BP_NUM": "\(key) - \(task.label)"]
+        let env = ["_BP_NUM": runName]
         let outputURL =
             task.config.urls.outputURL
                 // Filter the label since it is user-inputted.
@@ -76,9 +78,26 @@ class TestRun: CustomStringConvertible {
             printOutput: true
         )
         self.process = process
+        
+        let timeoutSeconds = task.config.taskTimeoutSeconds
+        let timeoutWork = DispatchWorkItem() {
+            if (self.outcome != .none) {
+                Logger.warning(msg: "Timeout task for run \(self.runName) executed, but outcome was already set.")
+                return
+            }
+            
+            Logger.error(
+                msg: "Test run timed out after \(timeoutSeconds) seconds. Interrupting test run \(self.runName)")
+            self.process?.interrupt()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(timeoutSeconds), execute: timeoutWork)
+        
         process.terminationHandler = { p in
-            self.finalizeRun(process: p)
-            onRunComplete(self)
+            DispatchQueue.main.async {
+                timeoutWork.cancel()
+                self.finalizeRun(process: p)
+                onRunComplete(self)
+            }
         }
     }
     
