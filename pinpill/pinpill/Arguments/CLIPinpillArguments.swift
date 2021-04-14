@@ -40,6 +40,8 @@ struct CLIPinpillArguments: PinpillArguments {
     var simulatorPreferencesPath: String?
 
     var environment: [String: String]?
+    
+    var taskTimeoutSeconds: Int?
 
     init(command: PinpillCLI) {
         headless = command.headless ? true : nil
@@ -50,6 +52,7 @@ struct CLIPinpillArguments: PinpillArguments {
         numTestRuns = command.numTestRuns
         device = command.device
         runtime = command.runtime
+        taskTimeoutSeconds = command.taskTimeoutSeconds
 
         if let testsToRunString = command.testsToRun {
             testTasks = testsToRunString

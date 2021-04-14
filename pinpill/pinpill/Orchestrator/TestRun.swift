@@ -36,6 +36,7 @@ class TestRun: CustomStringConvertible {
     var outcome: Outcome
     // Note: We only track this because for some reason, when bp gets SIGINT, it returns with BPExitStatusAllTestsPassed
     var interrupted: Bool
+    var timedOut: Bool
 
     // This will be used in filenames, so avoid any invalid characters.
     var key: String { return "\(task.taskID)_\(runID)" }
@@ -47,6 +48,7 @@ class TestRun: CustomStringConvertible {
         status = .none
         outcome = .none
         interrupted = false
+        timedOut = false
 
         fm = FileManager.default
         shell = Shell()
@@ -57,7 +59,7 @@ class TestRun: CustomStringConvertible {
         let bpConfigURL = try writeBPConfigToTmpFile()
         self.bpConfigURL = bpConfigURL
         
-        let env = ["_BP_NUM": "\(key) - \(task.label)"]
+        let env = ["_BP_NUM": description]
         let outputURL =
             task.config.urls.outputURL
                 // Filter the label since it is user-inputted.
@@ -76,9 +78,27 @@ class TestRun: CustomStringConvertible {
             printOutput: true
         )
         self.process = process
+        
+        let timeoutSeconds = task.config.taskTimeoutSeconds
+        let timeoutWork = DispatchWorkItem() {
+            if (self.outcome != .none) {
+                Logger.warning(msg: "Timeout task for run \(self.description) executed, but outcome was already set.")
+                return
+            }
+            
+            Logger.error(
+                msg: "Test run timed out after \(timeoutSeconds) seconds. Interrupting test run \(self.description)")
+            self.timedOut = true
+            self.process?.interrupt()
+        }
+        self.task.timeoutQueue.asyncAfter(deadline: .now() + Double(timeoutSeconds), execute: timeoutWork)
+        
         process.terminationHandler = { p in
-            self.finalizeRun(process: p)
-            onRunComplete(self)
+            self.task.timeoutQueue.async {
+                timeoutWork.cancel()
+                self.finalizeRun(process: p)
+                onRunComplete(self)
+            }
         }
     }
     
@@ -92,6 +112,12 @@ class TestRun: CustomStringConvertible {
             } catch {
                 Logger.error(msg: "Failed to delete bp config file.\n\(error)")
             }
+        }
+        
+        if timedOut {
+            Logger.warning(msg: "Task \(description) timed out")
+            outcome = .timeout
+            return
         }
 
         if interrupted {

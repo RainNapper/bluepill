@@ -40,4 +40,6 @@ struct JSONPinpillArguments: PinpillArguments, Codable {
     var simulatorPreferencesPath: String?
 
     var environment: [String: String]?
+    
+    var taskTimeoutSeconds: Int?
 }
